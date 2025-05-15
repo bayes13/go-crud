@@ -9,7 +9,6 @@ import (
 )
 
 type ItemRepository interface {
-	s
 	CreateItem(item *models.Item) error
 	FindItem(item *models.Item) ([]models.Item, error)
 	UpdateItem(item *models.Item) error
