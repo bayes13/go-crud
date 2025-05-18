@@ -7,16 +7,16 @@ import (
 )
 
 type Item struct {
-	ID          uuid.UUID `gorm:"type:uuid;primary_key" json:"id"`
-	Code        string    `json:"code"`
-	Name        string    `json:"name"`
-	Description string    `json:"description"`
-	Type        string    `gorm:"type:enum('PRODUCT','SERVICE','COMBO','MATERIAL')" json:"type"`
-	Category    string    `json:"category"`
-	UnitType    string    `gorm:"type:enum('PCS','LITER','METER')" json:"unitType"`
-	Enable      bool      `json:"enable"`
-	CreatedBy   string    `json:"createdBy"`
-	UpdatedBy   string    `json:"updatedBy"`
+	ID          uuid.UUID `gorm:"type:uuid;primary_key"`
+	Code        string
+	Name        string
+	Description string
+	Type        string `gorm:"type:enum('PRODUCT','SERVICE','COMBO','MATERIAL')"`
+	Category    string
+	UnitType    string
+	Enable      bool
+	CreatedBy   string
+	UpdatedBy   string
 	CreatedAt   time.Time
-	UpdatedTime time.Time
+	UpdatedAt   time.Time
 }

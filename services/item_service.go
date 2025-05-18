@@ -1,17 +1,16 @@
 package services
 
 import (
+	"go-crud/helpers"
 	"go-crud/models"
 	"go-crud/repositories"
-
-	"github.com/google/uuid"
 )
 
 type ItemService interface {
 	CreateItem(item *models.Item) bool
 	FindItem(item *models.Item) []models.Item
 	UpdateItem(item *models.Item) bool
-	DisableItem(id uuid.UUID, isEnable bool) bool
+	DisableItem(id string, isEnable bool) bool
 }
 
 type itemService struct {
@@ -44,9 +43,9 @@ func (s *itemService) UpdateItem(item *models.Item) bool {
 	return true
 }
 
-func (s *itemService) DisableItem(id uuid.UUID, isEnable bool) bool {
+func (s *itemService) DisableItem(id string, isEnable bool) bool {
 	var item *models.Item
-	item.ID = id
+	item.ID = helpers.ParseUUID(id)
 	items := s.FindItem(item)
 	if len(items) == 1 {
 		items[0].Enable = isEnable

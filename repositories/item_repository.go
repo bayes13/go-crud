@@ -3,6 +3,7 @@ package repositories
 import (
 	"go-crud/config"
 	"go-crud/models"
+	"time"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -24,6 +25,7 @@ func newItemRepository() ItemRepository {
 
 func (r *itemRepository) CreateItem(item *models.Item) error {
 	item.ID = uuid.New()
+	item.CreatedAt = time.Now()
 	return r.db.Create(item).Error
 }
 
@@ -37,5 +39,7 @@ func (r *itemRepository) FindItem(item *models.Item) ([]models.Item, error) {
 }
 
 func (r *itemRepository) UpdateItem(item *models.Item) error {
+	item.UpdatedAt = time.Now()
+	item.UpdatedBy = item.CreatedBy
 	return r.db.Save(item).Error
 }

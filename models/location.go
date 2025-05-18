@@ -5,12 +5,12 @@ import (
 )
 
 type Location struct {
-	ID        uuid.UUID `gorm:"type:uuid;primary_key" json:"id"`
-	Name      string    `json:"name"`
-	Category  string    `json:"category"`
-	Type      string    `gorm:"type:enum('INTERNAL','SCRAP','ADJUSTMENT','SUPLIER_ADD','CUSTOMER_ADD')" json:"type"`
-	Enabled   bool      `json:"enabled"`
-	Deleted   bool      `json:"deleted"`
-	Address   Address   `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
-	AddressID uuid.UUID `json:"addressid"`
+	ID        uuid.UUID `gorm:"type:uuid;primary_key"`
+	Name      string
+	Category  string
+	Type      string `gorm:"type:enum('INTERNAL','SCRAP','ADJUSTMENT','SUPLIER_ADD','CUSTOMER_ADD')"`
+	Enabled   bool
+	Deleted   bool
+	Address   Address `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
+	AddressID uuid.UUID
 }

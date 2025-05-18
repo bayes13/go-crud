@@ -5,8 +5,8 @@ import (
 )
 
 type Address struct {
-	ID          uuid.UUID `gorm:"type:uuid;primary_key;" json:"id"`
-	Label       string    `json:"label"`
-	FullAddress string    `json:"author"`
-	Contacts    []Contact `gorm:"foreignKey:AddressId;constrain:OnUpdate:CASCADE,OnDelete:SET NULL" json:"contacts"`
+	ID          uuid.UUID `gorm:"type:uuid;primary_key;"`
+	Label       string
+	FullAddress string
+	Contacts    []Contact `gorm:"foreignKey:AddressId;constrain:OnUpdate:CASCADE,OnDelete:SET NULL"`
 }
