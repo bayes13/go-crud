@@ -3,16 +3,16 @@ package dto
 import "time"
 
 type ItemDto struct {
-	ID          string    `json:"id"`
-	Code        string    `json:"code"`
-	Name        string    `json:"name"`
-	Description string    `json:"description"`
-	Type        string    `json:"type"`
-	Category    string    `json:"category"`
-	UnitType    string    `json:"unitType"`
-	Enable      bool      `json:"enable"`
-	CreatedBy   string    `json:"createdBy"`
-	UpdatedBy   string    `json:"updatedBy"`
-	CreatedAt   time.Time `json:"createdDate"`
-	UpdatedAt   time.Time `json:"updatedDate"`
+	ID          string    `json:"id,omitempty"`
+	Code        string    `json:"code,omitempty"`
+	Name        string    `json:"name,omitempty"`
+	Description string    `json:"description,omitempty"`
+	Type        string    `json:"type,omitempty"`
+	Category    string    `json:"category,omitempty"`
+	UnitType    string    `json:"unitType,omitempty"`
+	Enable      bool      `json:"enable,omitempty"`
+	CreatedBy   string    `json:"createdBy,omitempty"`
+	UpdatedBy   string    `json:"updatedBy,omitempty"`
+	CreatedAt   time.Time `json:"createdDate,omitempty"`
+	UpdatedAt   time.Time `json:"updatedDate,omitempty"`
 }

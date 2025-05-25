@@ -11,7 +11,7 @@ type Item struct {
 	Code        string
 	Name        string
 	Description string
-	Type        string `gorm:"type:enum('PRODUCT','SERVICE','COMBO','MATERIAL')"`
+	Type        string `gorm:"type:text;check:type IN ('PRODUCT','SERVICE','COMBO','MATERIAL')"`
 	Category    string
 	UnitType    string
 	Enable      bool

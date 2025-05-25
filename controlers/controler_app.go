@@ -13,7 +13,7 @@ type ControllerApp struct {
 	Service services.ItemService
 }
 
-func newControllerApp(service services.ItemService) *ControllerApp {
+func NewControllerApp(service services.ItemService) *ControllerApp {
 	return &ControllerApp{Service: service}
 }
 
