@@ -21,7 +21,7 @@ func ConnectionDataBase() {
 }
 
 func InitDatabase() {
-	err := DB.AutoMigrate(&models.Item{})
+	err := DB.AutoMigrate(&models.Item{}, &models.Address{}, &models.Contact{}, &models.Location{})
 	if err != nil {
 		log.Fatalf("Error migration database %v", err)
 	}

@@ -11,11 +11,11 @@ func ToItemEntity(item *dto.ItemDto) *models.Item {
 		Code:        item.Code,
 		Name:        item.Name,
 		Description: item.Description,
-		CreatedBy:   item.CreatedBy,
-		Type:        item.Type,
-		Category:    item.Category,
-		UnitType:    item.UnitType,
-		Enable:      item.Enable,
+		//BaseModel.CreatedBy:   item.CreatedBy,
+		Type:     item.Type,
+		Category: item.Category,
+		UnitType: item.UnitType,
+		Enable:   item.Enable,
 	}
 
 }
@@ -26,14 +26,14 @@ func ToItemDto(item *models.Item) *dto.ItemDto {
 		Code:        item.Code,
 		Name:        item.Name,
 		Description: item.Description,
-		CreatedBy:   item.CreatedBy,
+		CreatedBy:   item.BaseModel.CreatedBy,
 		Type:        item.Type,
 		Category:    item.Category,
 		UnitType:    item.UnitType,
 		Enable:      item.Enable,
-		UpdatedBy:   item.UpdatedBy,
-		CreatedAt:   item.CreatedAt,
-		UpdatedAt:   item.UpdatedAt,
+		UpdatedBy:   item.BaseModel.UpdatedBy,
+		CreatedAt:   item.BaseModel.CreatedAt,
+		UpdatedAt:   item.BaseModel.UpdatedAt,
 	}
 }
 

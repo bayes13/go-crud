@@ -25,7 +25,7 @@ func NewItemRepository() ItemRepository {
 
 func (r *itemRepository) CreateItem(item *models.Item) error {
 	item.ID = uuid.New()
-	item.CreatedAt = time.Now()
+	item.BaseModel.CreatedAt = time.Now()
 	return r.db.Create(item).Error
 }
 
@@ -39,7 +39,7 @@ func (r *itemRepository) FindItem(item *models.Item) ([]models.Item, error) {
 }
 
 func (r *itemRepository) UpdateItem(item *models.Item) error {
-	item.UpdatedAt = time.Now()
-	item.UpdatedBy = item.CreatedBy
+	item.BaseModel.UpdatedAt = time.Now()
+	item.BaseModel.UpdatedBy = item.BaseModel.CreatedBy
 	return r.db.Save(item).Error
 }
