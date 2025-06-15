@@ -11,8 +11,8 @@ type Location struct {
 	Name      string
 	Category  string
 	Type      string `gorm:"type:text;check:type IN('INTERNAL','SCRAP','ADJUSTMENT','SUPLIER_ADD','CUSTOMER_ADD')"`
-	Enabled   bool
+	Enable    bool
 	Deleted   bool
-	Address   Address `gorm:"foreign_key:AddressID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
-	AddressID uuid.UUID
+	Address   *Address `gorm:"foreign_key:AddressID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
+	AddressID *uuid.UUID
 }

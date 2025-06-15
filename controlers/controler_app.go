@@ -10,11 +10,12 @@ import (
 )
 
 type ControllerApp struct {
-	Service services.ItemService
+	ItemService     services.ItemService
+	LocationService services.LocationService
 }
 
-func NewControllerApp(service services.ItemService) *ControllerApp {
-	return &ControllerApp{Service: service}
+func NewControllerApp(itemService services.ItemService, locationService services.LocationService) *ControllerApp {
+	return &ControllerApp{ItemService: itemService, LocationService: locationService}
 }
 
 func (c *ControllerApp) CreateItem(ctx *gin.Context) {
@@ -24,7 +25,7 @@ func (c *ControllerApp) CreateItem(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	success := c.Service.CreateItem(helpers.ToItemEntity(&dto))
+	success := c.ItemService.CreateItem(helpers.ToItemEntity(&dto))
 	if !success {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to Create Item"})
 		return
@@ -39,7 +40,7 @@ func (c *ControllerApp) UpdateItem(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	success := c.Service.UpdateItem(helpers.ToItemEntity(&dto))
+	success := c.ItemService.UpdateItem(helpers.ToItemEntity(&dto))
 	if !success {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to Update Item"})
 		return
@@ -55,7 +56,7 @@ func (c *ControllerApp) DisableItem(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	success := c.Service.DisableItem(dto.ID, dto.Enable)
+	success := c.ItemService.DisableItem(dto.ID, dto.Enable)
 	if !success {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to Disable Item"})
 		return
@@ -71,7 +72,7 @@ func (c *ControllerApp) FindItems(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	itemsEntity := c.Service.FindItem(helpers.ToItemEntity(&dto))
+	itemsEntity := c.ItemService.FindItem(helpers.ToItemEntity(&dto))
 	dtoList := helpers.ToItemDtoList(&itemsEntity)
 
 	ctx.JSON(http.StatusCreated, dtoList)

@@ -17,7 +17,8 @@ func main() {
 	router := gin.Default()
 
 	itemServ := services.NewItemService(repositories.NewItemRepository())
-	controller := controlers.NewControllerApp(itemServ)
+	locationServ := services.NewLocationService(repositories.NewLocationRepository())
+	controller := controlers.NewControllerApp(itemServ, locationServ)
 
 	controlers.SetUpRoutes(router, controller)
 

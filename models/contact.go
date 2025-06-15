@@ -11,6 +11,6 @@ type Contact struct {
 	FullName    string
 	PhoneNumber string
 	Type        string `gorm:"type:text;check:type IN('INTERNAl','CUSTOMER','VENDOR')"`
-	AddressID   uuid.UUID
-	Address     Address `gorm:"foreign_key:AddressID"`
+	AddressID   *uuid.UUID
+	Address     *Address `gorm:"foreign_key:AddressID"`
 }
